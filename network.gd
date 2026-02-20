@@ -78,13 +78,19 @@ func _on_request_done(result, response_code, headers, body):
 
 	# --- audio handling ---
 	if json.has("audio_base64"):
+		
 		var b64:String = json["audio_base64"]
 
 		var bytes:PackedByteArray = Marshalls.base64_to_raw(b64)
 
 		# assume WAV (most APIs use this)
 		var stream = AudioStreamWAV.load_from_buffer(bytes)
-
+		print("audio bytes:", bytes.size())
+		print("stream:", stream)
+		print(bytes.slice(0, 12))
+		print(stream.format)
+		print(stream.mix_rate)
+		print(stream.stereo)
 		if stream:
 			json["audio_stream"] = stream   # cache decoded audio
 		else:
@@ -112,6 +118,7 @@ func pop_message() -> String:
 
 	# play audio if present
 	if full.has("audio_stream"):
+		print(full["audio_stream"])
 		audio_ready.emit(full["audio_stream"])
 
 	if full.has("sentence"):

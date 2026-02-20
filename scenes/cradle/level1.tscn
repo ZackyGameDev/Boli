@@ -47,9 +47,6 @@ texture = ExtResource("2_gxhpc")
 [node name="father" type="CharacterBody2D" parent="."]
 position = Vector2(488, 469)
 script = ExtResource("3_kh4ss")
-perspective_strength = null
-min_scale_multiplier = null
-max_scale_multiplier = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="father"]

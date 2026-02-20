@@ -53,8 +53,9 @@ func _ready():
 	Network.audio_ready.connect(_play_voice)
 
 func _play_voice(stream: AudioStreamWAV):
-	$AudioStreamPlayer.stream = stream
-	$AudioStreamPlayer.play()
+	$AudioStreamPlayer2D.stream = stream
+	print("Stream ready...")
+	$AudioStreamPlayer2D.play()
 
 func apply_perspective_scale():
 
@@ -202,7 +203,7 @@ func look_at_object(target: Node2D, line: String):
 	update_facing((target.global_position - global_position).normalized())
 	state = WAITING
 	get_node("SpeechBubble/!").visible = true
-	wait_timer = 2
+	wait_timer = 2.5
 	last_dist = INF
 	stuck_time = 0.0
 
