@@ -6,6 +6,7 @@ var http: HTTPRequest
 var response_queue: Array = []
 var busy := false
 
+signal audio_ready(audio: AudioStreamWAV)
 
 func _ready():
 	http = HTTPRequest.new()
@@ -75,6 +76,20 @@ func _on_request_done(result, response_code, headers, body):
 		print("Invalid JSON")
 		return
 
+	# --- audio handling ---
+	if json.has("audio_base64"):
+		var b64:String = json["audio_base64"]
+
+		var bytes:PackedByteArray = Marshalls.base64_to_raw(b64)
+
+		# assume WAV (most APIs use this)
+		var stream = AudioStreamWAV.load_from_buffer(bytes)
+
+		if stream:
+			json["audio_stream"] = stream   # cache decoded audio
+		else:
+			print("Failed to decode audio")
+
 	response_queue.push_back(json)
 
 	emit_signal("response_ready")
@@ -95,8 +110,11 @@ func pop_message() -> String:
 
 	var full = response_queue.pop_front()
 
+	# play audio if present
+	if full.has("audio_stream"):
+		audio_ready.emit(full["audio_stream"])
+
 	if full.has("sentence"):
 		return full["sentence"]
-		response_queue.clear()
 
 	return ""

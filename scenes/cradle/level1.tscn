@@ -47,6 +47,9 @@ texture = ExtResource("2_gxhpc")
 [node name="father" type="CharacterBody2D" parent="."]
 position = Vector2(488, 469)
 script = ExtResource("3_kh4ss")
+perspective_strength = null
+min_scale_multiplier = null
+max_scale_multiplier = null
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="father"]
@@ -85,6 +88,8 @@ visible = false
 position = Vector2(0, -268.645)
 scale = Vector2(0.33, 0.33)
 texture = ExtResource("5_3if8t")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="father"]
 
 [node name="objs" type="Node2D" parent="."]
 

@@ -50,6 +50,12 @@ func _ready():
 	speech_bubble.z_index = 100
 	base_visual_scale = sprite.scale
 	base_y = global_position.y
+	Network.audio_ready.connect(_play_voice)
+
+func _play_voice(stream: AudioStreamWAV):
+	$AudioStreamPlayer.stream = stream
+	$AudioStreamPlayer.play()
+
 func apply_perspective_scale():
 
 	var y_offset = global_position.y - base_y
