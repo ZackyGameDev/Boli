@@ -1,0 +1,46 @@
+<script>
+window.GodotSpeech = {
+
+    callback: null,
+
+    registerCallback(cb) {
+        this.callback = cb;
+    },
+
+    startSpeechRecognition() {
+
+        const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) {
+            this.callback(JSON.stringify({ error: "unsupported" }));
+            return;
+        }
+
+        const recognition = new SR();
+
+        // recognition.lang = "en-IN";
+        recognition.lang = "pa-IN";   // Punjabi
+
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        recognition.onresult = (event) => {
+            const text = event.results[0][0].transcript;
+
+            // 🔴 ALWAYS SEND JSON STRING OTHERWISE BURN DOWN THE JS
+            this.callback(JSON.stringify({
+                type: "speech",
+                text: text
+            }));
+        };
+
+        recognition.onerror = (e) => {
+            this.callback(JSON.stringify({
+                type: "error",
+                error: e.error
+            }));
+        };
+
+        recognition.start();
+    }
+};
+</script>

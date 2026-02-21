@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://djwjaxxi67i8"]
+[gd_scene load_steps=22 format=3 uid="uid://djwjaxxi67i8"]
 
 [ext_resource type="Texture2D" uid="uid://d21sx6t274ajv" path="res://scenes/cradle/bg.png" id="1_cjnt2"]
 [ext_resource type="Texture2D" uid="uid://cfuqt241shjyc" path="res://scenes/cradle/mother/mother.png" id="2_gxhpc"]
+[ext_resource type="Script" uid="uid://cylh45h3d6q0j" path="res://scenes/cradle/mother.gd" id="3_0euyq"]
 [ext_resource type="Texture2D" uid="uid://ct1pfo3hqxi0w" path="res://scenes/cradle/father/father.png" id="3_gxhpc"]
 [ext_resource type="Script" uid="uid://cs5ojrn16or1b" path="res://scenes/cradle/father.gd" id="3_kh4ss"]
 [ext_resource type="Texture2D" uid="uid://crsrcjaowekgg" path="res://scenes/cradle/father/!.png" id="5_3if8t"]
@@ -15,6 +16,9 @@
 [ext_resource type="Script" uid="uid://dcr1v4g28et1l" path="res://scenes/cradle/paint.gd" id="10_8uuc5"]
 [ext_resource type="Script" uid="uid://dw8rl20bj6wxn" path="res://scenes/cradle/window.gd" id="11_1srby"]
 [ext_resource type="Script" uid="uid://b80fs1numdoj3" path="res://scenes/cradle/tasks.gd" id="11_vv8cv"]
+[ext_resource type="Texture2D" uid="uid://bblrixfp52d7k" path="res://scenes/cradle/mickey.png" id="17_brivd"]
+[ext_resource type="Script" uid="uid://c3r01iuu2aqor" path="res://scenes/cradle/voice.gd" id="17_iahit"]
+[ext_resource type="Script" uid="uid://crw5qgv8cbrmy" path="res://scenes/cradle/transcription.gd" id="18_brivd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kh4ss"]
 radius = 25.0799
@@ -40,9 +44,12 @@ texture = ExtResource("1_cjnt2")
 
 [node name="Mother" type="Sprite2D" parent="."]
 z_index = 98
-position = Vector2(-221, 559)
+position = Vector2(-137.00002, 478)
 scale = Vector2(0.8833303, 0.9069371)
 texture = ExtResource("2_gxhpc")
+script = ExtResource("3_0euyq")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Mother"]
 
 [node name="father" type="CharacterBody2D" parent="."]
 position = Vector2(488, 469)
@@ -177,8 +184,43 @@ theme_override_font_sizes/normal_font_size = 21
 bbcode_enabled = true
 text = "[s]tasjs[/s]"
 
+[node name="speech" type="Node2D" parent="."]
+
+[node name="voice" type="TouchScreenButton" parent="speech"]
+z_index = 99
+position = Vector2(565, 459)
+scale = Vector2(0.39, 0.39)
+texture_normal = ExtResource("17_brivd")
+texture_pressed = ExtResource("17_brivd")
+script = ExtResource("17_iahit")
+metadata/_custom_type_script = "uid://b3oy0pt47fses"
+
+[node name="Panel" type="Panel" parent="speech"]
+z_index = 115
+offset_left = 752.0
+offset_top = 479.0
+offset_right = 1210.0
+offset_bottom = 685.0
+
+[node name="transcription" type="RichTextLabel" parent="speech/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 445.0
+offset_bottom = 196.0
+theme_override_fonts/normal_font = ExtResource("5_8uuc5")
+theme_override_font_sizes/normal_font_size = 31
+text = "TEXT GOES HERE!!!!!"
+script = ExtResource("18_brivd")
+
+[connection signal="done_speaking" from="Mother" to="Tasks" method="_on_mother_done_speaking"]
 [connection signal="button_activated" from="objs/tea" to="objs/tea" method="_on_button_activated"]
 [connection signal="button_activated" from="objs/milk" to="objs/milk" method="_on_button_activated"]
 [connection signal="button_activated" from="objs/toy" to="objs/toy" method="_on_button_activated"]
 [connection signal="button_activated" from="objs/paint" to="objs/paint" method="_on_button_activated"]
 [connection signal="button_activated" from="objs/window" to="objs/window" method="_on_button_activated"]
+[connection signal="button_activated" from="speech/voice" to="speech/voice" method="_on_button_activated"]
+[connection signal="button_activated" from="speech/voice" to="speech/Panel/transcription" method="_on_voice_button_activated"]
+[connection signal="speech_received" from="speech/voice" to="Mother" method="_on_voice_speech_received"]
+[connection signal="speech_received" from="speech/voice" to="Tasks" method="_on_voice_speech_received"]
+[connection signal="speech_received" from="speech/voice" to="speech/Panel/transcription" method="_on_voice_speech_received"]

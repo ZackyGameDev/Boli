@@ -55,7 +55,30 @@ func request_dialogue(outline: String, language: String = "Punjabi"):
 
 	post_json("http://localhost:3000/api/generate", body)
 
+# =========================================================
+# SPECIFIC API — TASK PROCESSING REQUEST
+# =========================================================
+func request_task_processing(text:String, tasks:Array, scene_id:String="scene_1"):
 
+	var cleaned_tasks:Array = []
+
+	for t in tasks:
+		if typeof(t) != TYPE_DICTIONARY:
+			continue
+
+		cleaned_tasks.append({
+			"task_id": t.get("task_id", ""),
+			"expected_intent": t.get("expected_intent", ""),
+			"keywords": t.get("keywords", [])
+		})
+
+	var body := {
+		"scene_id": scene_id,
+		"user_input": text,
+		"tasks": cleaned_tasks
+	}
+
+	post_json("http://localhost:3000/api/process", body)
 
 # =========================================================
 # RESPONSE HANDLER
@@ -112,6 +135,7 @@ func has_message() -> bool:
 func pop_message() -> String:
 
 	if response_queue.is_empty():
+		response_queue.clear()
 		return ""
 
 	var full = response_queue.pop_front()
@@ -122,6 +146,7 @@ func pop_message() -> String:
 		audio_ready.emit(full["audio_stream"])
 
 	if full.has("sentence"):
+		response_queue.clear()
 		return full["sentence"]
-
+	response_queue.clear()
 	return ""

@@ -3,7 +3,7 @@ extends GUIButton
 @export var npc: NodePath
 @export var punjabi_word: String = "doodh"
 @export var line: String = "doodh kyu rakhaa hai zameen pe???"
-@export var outline: String = "say a short sentence something about a kid's teddy bear"
+@export var outline: String = "say a phrase about a teddy bear"
 
 
 func _ready() -> void: 
