@@ -29,9 +29,9 @@ var tasks = [
 
 var done = [
 	false,
-	false,
-	false,
-	false,
+	true,
+	true,
+	true,
 ]
 
 func _ready() -> void:
@@ -73,3 +73,10 @@ func _on_mother_done_speaking(res: Variant) -> void:
 				if completed:
 					done[i] = true
 				break
+	
+	var t = true
+	for i in done:
+		if i == false: 
+			t = false
+	if t == true:
+		get_parent().do_it()

@@ -1,0 +1,262 @@
+[gd_scene load_steps=19 format=3 uid="uid://df8gutc5a5k33"]
+
+[ext_resource type="Texture2D" uid="uid://fdvgba5oft8y" path="res://scenes/preschool/bg.png" id="1_sgi5d"]
+[ext_resource type="Texture2D" uid="uid://b42kkhovtx0pt" path="res://scenes/preschool/1.png" id="2_5icoo"]
+[ext_resource type="Texture2D" uid="uid://br386v1xfmhgt" path="res://scenes/preschool/2.png" id="3_nvon3"]
+[ext_resource type="Texture2D" uid="uid://6i65cnr3pje5" path="res://scenes/preschool/3.png" id="3_t8p1s"]
+[ext_resource type="Script" uid="uid://cfhk4fvxyi7h7" path="res://scenes/preschool/m.gd" id="4_1eyxr"]
+[ext_resource type="FontFile" uid="uid://c7glolov766km" path="res://NotoSansGurmukhi-VariableFont_wdth,wght.ttf" id="6_t8p1s"]
+[ext_resource type="Texture2D" uid="uid://crsrcjaowekgg" path="res://scenes/cradle/father/!.png" id="7_8iw3w"]
+[ext_resource type="Script" uid="uid://cs5ojrn16or1b" path="res://scenes/cradle/father.gd" id="8_8iw3w"]
+[ext_resource type="Texture2D" uid="uid://d3njwryppr20r" path="res://scenes/cradle/nothing.png" id="8_027w2"]
+[ext_resource type="Script" uid="uid://upj6sjb1w4pm" path="res://scenes/preschool/1but.gd" id="8_bj25i"]
+[ext_resource type="Script" uid="uid://bd1xvh1165vlp" path="res://scenes/preschool/tasks.gd" id="11_027w2"]
+[ext_resource type="Texture2D" uid="uid://bblrixfp52d7k" path="res://scenes/cradle/mickey.png" id="12_3jbwi"]
+[ext_resource type="Script" uid="uid://c3r01iuu2aqor" path="res://scenes/cradle/voice.gd" id="13_t7gxt"]
+[ext_resource type="Script" uid="uid://crw5qgv8cbrmy" path="res://scenes/cradle/transcription.gd" id="14_f1prg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bj25i"]
+radius = 40.93
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_027w2"]
+bg_color = Color(0.972549, 0.911007, 0.840224, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.362418, 0.262546, 0.0451843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_027w2"]
+radius = 29.43
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ud48w"]
+bg_color = Color(0.972549, 0.911007, 0.840224, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.362418, 0.262546, 0.0451843, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Level2" type="Node2D"]
+
+[node name="Bg" type="Sprite2D" parent="."]
+position = Vector2(445.55997, 271.03998)
+scale = Vector2(1.545, 1.545)
+texture = ExtResource("1_sgi5d")
+
+[node name="m" type="CharacterBody2D" parent="."]
+position = Vector2(1010.55994, 387.03998)
+script = ExtResource("4_1eyxr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="m"]
+position = Vector2(0, -84.755)
+scale = Vector2(0.718, 0.724)
+texture = ExtResource("3_t8p1s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="m"]
+shape = SubResource("CircleShape2D_bj25i")
+
+[node name="Ray_F" type="RayCast2D" parent="m"]
+
+[node name="Ray_L" type="RayCast2D" parent="m"]
+
+[node name="Ray_R" type="RayCast2D" parent="m"]
+
+[node name="SpeechBubble" type="Node2D" parent="m"]
+
+[node name="Panel" type="Panel" parent="m/SpeechBubble"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_027w2")
+
+[node name="Label" type="Label" parent="m/SpeechBubble/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.121569, 0.12549, 0.0901961, 1)
+theme_override_fonts/font = ExtResource("6_t8p1s")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="!" type="Sprite2D" parent="m/SpeechBubble"]
+visible = false
+position = Vector2(0, -268.645)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("7_8iw3w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="m"]
+
+[node name="1" type="CharacterBody2D" parent="."]
+position = Vector2(636.55994, 288.03998)
+script = ExtResource("8_8iw3w")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="1"]
+position = Vector2(0, -59.295)
+scale = Vector2(0.588, 0.593)
+texture = ExtResource("2_5icoo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="1"]
+shape = SubResource("CircleShape2D_027w2")
+
+[node name="Ray_F" type="RayCast2D" parent="1"]
+
+[node name="Ray_L" type="RayCast2D" parent="1"]
+
+[node name="Ray_R" type="RayCast2D" parent="1"]
+
+[node name="SpeechBubble" type="Node2D" parent="1"]
+
+[node name="Panel" type="Panel" parent="1/SpeechBubble"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud48w")
+
+[node name="Label" type="Label" parent="1/SpeechBubble/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.121569, 0.12549, 0.0901961, 1)
+theme_override_fonts/font = ExtResource("6_t8p1s")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="!" type="Sprite2D" parent="1/SpeechBubble"]
+visible = false
+position = Vector2(0, -268.645)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("7_8iw3w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="1"]
+
+[node name="1but" type="TouchScreenButton" parent="1"]
+z_index = 120
+position = Vector2(-52.00002, -162.00002)
+scale = Vector2(2.0000002, 4.26)
+texture_normal = ExtResource("8_027w2")
+texture_pressed = ExtResource("8_027w2")
+script = ExtResource("8_bj25i")
+npc = NodePath("../../m")
+metadata/_custom_type_script = "uid://b3oy0pt47fses"
+
+[node name="2" type="CharacterBody2D" parent="."]
+position = Vector2(246.55994, 349.03998)
+script = ExtResource("8_8iw3w")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="2"]
+position = Vector2(0, -61.495)
+scale = Vector2(0.608, 0.613)
+texture = ExtResource("3_nvon3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2"]
+shape = SubResource("CircleShape2D_027w2")
+
+[node name="Ray_F" type="RayCast2D" parent="2"]
+
+[node name="Ray_L" type="RayCast2D" parent="2"]
+
+[node name="Ray_R" type="RayCast2D" parent="2"]
+
+[node name="SpeechBubble" type="Node2D" parent="2"]
+
+[node name="Panel" type="Panel" parent="2/SpeechBubble"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ud48w")
+
+[node name="Label" type="Label" parent="2/SpeechBubble/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.121569, 0.12549, 0.0901961, 1)
+theme_override_fonts/font = ExtResource("6_t8p1s")
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="!" type="Sprite2D" parent="2/SpeechBubble"]
+visible = false
+position = Vector2(0, -268.645)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("7_8iw3w")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="2"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-44.440063, -256.96002)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-5, 500, 657, 433, 1311, 520, 1311, -73, 649, -91, -82, -89)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-44.440063, -256.96002)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(2, 499, 1, 718, 1282, 714, 1274, 504, 1427, 844, -213, 850)
+
+[node name="speech" type="Node2D" parent="."]
+position = Vector2(912, 5)
+
+[node name="voice" type="TouchScreenButton" parent="speech"]
+z_index = 99
+position = Vector2(-334, 434)
+scale = Vector2(0.39, 0.39)
+texture_normal = ExtResource("12_3jbwi")
+texture_pressed = ExtResource("12_3jbwi")
+script = ExtResource("13_t7gxt")
+metadata/_custom_type_script = "uid://b3oy0pt47fses"
+
+[node name="Panel" type="Panel" parent="speech"]
+z_index = 115
+offset_left = -139.0
+offset_top = 481.0
+offset_right = 319.0
+offset_bottom = 687.0
+metadata/_edit_group_ = true
+
+[node name="transcription" type="RichTextLabel" parent="speech/Panel"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 445.0
+offset_bottom = 196.0
+theme_override_fonts/normal_font = ExtResource("6_t8p1s")
+theme_override_font_sizes/normal_font_size = 31
+text = "Touch the mic icon and try speaking!"
+script = ExtResource("14_f1prg")
+
+[node name="Tasks" type="Panel" parent="."]
+offset_left = 886.0
+offset_top = 22.0
+offset_right = 1252.0
+offset_bottom = 211.0
+script = ExtResource("11_027w2")
+metadata/_edit_group_ = true
+
+[node name="list" type="RichTextLabel" parent="Tasks"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 7.0
+offset_right = 351.0
+offset_bottom = 178.0
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[s]tasjs[/s]"
+
+[connection signal="button_activated" from="1/1but" to="1/1but" method="_on_button_activated"]
+[connection signal="button_activated" from="speech/voice" to="speech/voice" method="_on_button_activated"]
+[connection signal="button_activated" from="speech/voice" to="speech/Panel/transcription" method="_on_voice_button_activated"]
+[connection signal="speech_received" from="speech/voice" to="Tasks" method="_on_voice_speech_received"]
+[connection signal="speech_received" from="speech/voice" to="speech/Panel/transcription" method="_on_voice_speech_received"]

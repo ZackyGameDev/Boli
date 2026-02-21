@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://djwjaxxi67i8"]
+[gd_scene load_steps=24 format=3 uid="uid://djwjaxxi67i8"]
 
 [ext_resource type="Texture2D" uid="uid://d21sx6t274ajv" path="res://scenes/cradle/bg.png" id="1_cjnt2"]
+[ext_resource type="Script" uid="uid://cefqc3dpar8l4" path="res://scenes/cradle/level_1.gd" id="1_hvlfi"]
 [ext_resource type="Texture2D" uid="uid://cfuqt241shjyc" path="res://scenes/cradle/mother/mother.png" id="2_gxhpc"]
 [ext_resource type="Script" uid="uid://cylh45h3d6q0j" path="res://scenes/cradle/mother.gd" id="3_0euyq"]
 [ext_resource type="Texture2D" uid="uid://ct1pfo3hqxi0w" path="res://scenes/cradle/father/father.png" id="3_gxhpc"]
@@ -19,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bblrixfp52d7k" path="res://scenes/cradle/mickey.png" id="17_brivd"]
 [ext_resource type="Script" uid="uid://c3r01iuu2aqor" path="res://scenes/cradle/voice.gd" id="17_iahit"]
 [ext_resource type="Script" uid="uid://crw5qgv8cbrmy" path="res://scenes/cradle/transcription.gd" id="18_brivd"]
+[ext_resource type="Texture2D" uid="uid://b54jr0qu5xt75" path="res://white.png" id="21_7lb42"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kh4ss"]
 radius = 25.0799
@@ -36,6 +38,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_hvlfi")
 
 [node name="Bg" type="Sprite2D" parent="."]
 position = Vector2(645, 382)
@@ -210,8 +213,29 @@ offset_right = 445.0
 offset_bottom = 196.0
 theme_override_fonts/normal_font = ExtResource("5_8uuc5")
 theme_override_font_sizes/normal_font_size = 31
-text = "TEXT GOES HERE!!!!!"
+text = "Touch the mic icon and try speaking!"
 script = ExtResource("18_brivd")
+
+[node name="White" type="Sprite2D" parent="."]
+visible = false
+z_index = 145
+position = Vector2(625, 385.5)
+scale = Vector2(6.740741, 2.3137755)
+texture = ExtResource("21_7lb42")
+
+[node name="end" type="RichTextLabel" parent="."]
+visible = false
+z_index = 245
+offset_left = 140.0
+offset_top = 130.0
+offset_right = 1088.0
+offset_bottom = 524.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 46
+text = "Congratulations! 
+A stage of your life has been completed! You can now go to.. preschool."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="done_speaking" from="Mother" to="Tasks" method="_on_mother_done_speaking"]
 [connection signal="button_activated" from="objs/tea" to="objs/tea" method="_on_button_activated"]

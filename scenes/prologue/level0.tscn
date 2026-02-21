@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://j0dqn2x8fr4h"]
+
+[ext_resource type="Script" uid="uid://c3kpwhgovbfrh" path="res://scenes/prologue/level_0.gd" id="1_a880i"]
+[ext_resource type="Texture2D" uid="uid://cei147umsm2km" path="res://black.png" id="2_bxvf5"]
+[ext_resource type="Texture2D" uid="uid://b54jr0qu5xt75" path="res://white.png" id="3_p43mr"]
+
+[node name="Level0" type="Node2D"]
+script = ExtResource("1_a880i")
+
+[node name="Black" type="Sprite2D" parent="."]
+position = Vector2(619.49994, 353.5)
+scale = Vector2(6.393518, 4.278948)
+texture = ExtResource("2_bxvf5")
+
+[node name="1" type="RichTextLabel" parent="."]
+offset_left = 96.0
+offset_top = 55.0
+offset_right = 812.0
+offset_bottom = 198.0
+theme_override_font_sizes/normal_font_size = 51
+text = "Welcome..."
+
+[node name="2" type="RichTextLabel" parent="."]
+offset_left = 165.0
+offset_top = 174.0
+offset_right = 881.0
+offset_bottom = 317.0
+theme_override_font_sizes/normal_font_size = 26
+text = "This is your alternate life, from your birth."
+
+[node name="3" type="RichTextLabel" parent="."]
+offset_left = 235.0
+offset_top = 292.0
+offset_right = 1031.0
+offset_bottom = 429.0
+theme_override_font_sizes/normal_font_size = 26
+text = "Engage with your environment and learn how to make bonds"
+
+[node name="4" type="RichTextLabel" parent="."]
+offset_left = 548.0
+offset_top = 414.0
+offset_right = 1344.0
+offset_bottom = 551.0
+theme_override_font_sizes/normal_font_size = 26
+text = "You shall now begin... "
+
+[node name="5" type="RichTextLabel" parent="."]
+offset_left = 693.0
+offset_top = 513.0
+offset_right = 1489.0
+offset_bottom = 650.0
+theme_override_font_sizes/normal_font_size = 51
+text = "as an infant."
+
+[node name="White" type="Sprite2D" parent="."]
+position = Vector2(664, 358.5)
+scale = Vector2(7.018518, 2.2066326)
+texture = ExtResource("3_p43mr")
